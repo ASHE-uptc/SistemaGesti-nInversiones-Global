@@ -26,6 +26,7 @@ public class AssetService {
         this.repo = repo;
     }
 
+
     /**
      * Registra un activo con código (identificador), nombre, tipo, precio actual y volatilidad.
      *
@@ -56,9 +57,40 @@ public class AssetService {
         }
     }
 
-    //Consultar activos filtrando por tipo o rango de precio (Falta)
+    //Consultar activos filtrando por tipo
+    public List<Asset> findByType(AssetType t){
+        List<Asset> allAssets = repo.findAll();
+        
+        return allAssets.stream()
+                .filter(asset -> asset.getAssetType() == t)
+                .toList();
+    }
+     //Consultar activos filtrando por  rango de precio 
+    public List<Asset> findByPriceRange(double minPrice,double maxPrice){
+        List<Asset> allAssets = repo.findAll();
+        
+        return allAssets.stream()
+                .filter(asset -> asset.getActualPrice() >=minPrice && asset.getActualPrice()<=maxPrice)
+                .toList();
+    }
+    //Actualizar precio del activo y recalcular rendimientos automáticamente
+    public void updAssetPrice(String assetId, double newPrice) {
+        List<Asset> assets = repo.findAll();
+        boolean isUpdated = false;
 
-    //Actualizar precio del activo y recalcular rendimientos automáticamente (Falta)
+        for (Asset asset : assets) {
+            if (asset.getId().equals(assetId)) {
+                asset.setActualPrice(newPrice);
+                isUpdated = true;
+                break;
+            }
+        }
+        if (isUpdated) {
+            repo.replaceAll(assets); // Guarda en assets.json
+        } else {
+            throw new AssetNotFoundException(assetId);
+        }
+    }
 
     /**
      * Obtiene el precio actual de un activo por su identificador, necesario para calcular
