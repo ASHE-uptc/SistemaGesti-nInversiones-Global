@@ -62,11 +62,57 @@ public class InvestorService {
         }
     }
 
-    //Modificar (Falta)
-    
+    //Modificar 
+    // Método para modificar los datos de un inversionista existente
+    public void updateInvestor(String id, String newName, String newEmail, String newRiskProfile) {
+        List<Investor> investors = repo.findAll();
+        boolean isUpdated = false;
 
-    //Eliminar (Falta)
+        for (Investor investor : investors) {
+            if (investor.getId().equals(id)) {
+                
+                if (newName != null && !newName.trim().isEmpty()) {
+                    investor.setName(newName);
+                }
+                
+                if (newEmail != null && !newEmail.trim().isEmpty()) {
+                    investor.setEmail(newEmail);
+                }
+                
+                // Conversión del String al Enum
+                if (newRiskProfile != null && !newRiskProfile.trim().isEmpty()) {
+                    try {
+                        // valueOf busca el Enum exacto. Usamos toUpperCase() por si el usuario escribe en minúsculas
+                        RiskProfile parsedRisk = RiskProfile.valueOf(newRiskProfile.trim().toUpperCase());
+                        investor.setRiskProfile(parsedRisk);
+                    } catch (IllegalArgumentException e) {
+                        // Si no coincide con CONSERVADOR, MODERADO o AGRESIVO, lanzamos este error
+                        throw new IllegalArgumentException("Error: El perfil de riesgo '" + newRiskProfile + "' no es válido.");
+                    }
+                }
+                
+                isUpdated = true;
+                break;
+            }
+        }
 
+        if (isUpdated) {
+            repo.replaceAll(investors);
+        } else {
+            throw new InvestorNotFoundException(id);
+        }
+    }
+    //Eliminar 
+    public boolean delete(String id) {
+        List<Investor> investors = repo.findAll();
+        boolean beDeleted = investors.removeIf(m -> m.getId().equals(id));
+        if (beDeleted) {
+            repo.replaceAll(investors);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * Busca un inversionista por su identificador.

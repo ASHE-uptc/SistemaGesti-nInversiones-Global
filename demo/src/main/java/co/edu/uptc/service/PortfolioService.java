@@ -59,5 +59,6 @@ public class PortfolioService {
         }
 
         return total;
+
     }
 }
