@@ -3,7 +3,7 @@
     "id": "A1",
     "name": "Bono del Estado 2030",
     "assetType": "BOND",
-    "actualPrice": 2000.0,
+    "actualPrice": 1000.0,
     "volatility": 0.02
   },
   {
@@ -68,5 +68,12 @@
     "assetType": "CRYPTO",
     "actualPrice": 3200.0,
     "volatility": 0.3
+  },
+  {
+    "id": "A11",
+    "name": "Brave Reward",
+    "assetType": "CRYPTO",
+    "actualPrice": 6000.0,
+    "volatility": 0.1
   }
 ]

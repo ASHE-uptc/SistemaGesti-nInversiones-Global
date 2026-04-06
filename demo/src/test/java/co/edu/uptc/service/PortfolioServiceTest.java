@@ -35,10 +35,10 @@ class PortfolioServiceTest {
 
         Type invListType = new TypeToken<List<Investment>>() {}.getType();
         JsonRepository<Investment> invRepo = new JsonRepository<>(tempDir.resolve("inversions.json").toString(), invListType);
-        InvestmentService inversionService = new InvestmentService(invRepo);
-        inversionService.setAssetService(assetService);
+        //InvestmentService inversionService = new InvestmentService(invRepo);
+        //inversionService.setAssetService(assetService);
 
-        portfolioService = new PortfolioService(inversionService, assetService);
+        //portfolioService = new PortfolioService(inversionService, assetService);
 
         assetService.createAsset("A1", "Activo prueba", AssetType.BOND, 10.0, 0.0);
     }

@@ -135,8 +135,11 @@ public class InvestmentController {
                 double totalPortfolioValue = 0.0;
     
                 for (Investment inv : portfolio) {
+                    double currentPrice = assetService.getPrice(inv.getAssetId());
+                    double currentValue = currentPrice * inv.getAmount();
+
                     printInvestmentDetails(inv);
-                    totalPortfolioValue += inv.getCurrentValue();
+                    totalPortfolioValue += currentValue;
                 }
     
                 String totalMsg = String.format(
@@ -179,14 +182,39 @@ public class InvestmentController {
      * Método auxiliar privado para imprimir los detalles de una inversión.
      */
     private void printInvestmentDetails(Investment inv) {
-        double initialInvestment = investmentService.calculatePurchasePrice(inv.getPurchasePrice(), inv.getAmount());
-        double earnings = investmentService.calculateEarnings(inv.getCurrentValue(), initialInvestment);
-        
-        String earningsStr = (earnings >= 0) ? "(+$" + String.format("%.2f", earnings) + ")" : "(-$" + String.format("%.2f", Math.abs(earnings)) + ")";
 
-        String detailLine = String.format(view.getLocalizedText("msg.format.investmentDetail"),
-            inv.getId(), inv.getAssetId(), inv.getAmount(), inv.getCurrentValue(), inv.getYieldPercentage(), earningsStr);
-        
+        // 🔹 Obtener precio actual REAL del activo
+        double currentPrice = assetService.getPrice(inv.getAssetId());
+    
+        // 🔹 Calcular valor actual dinámico
+        double currentValue = currentPrice * inv.getAmount();
+    
+        // 🔹 Inversión inicial (ya viene calculada correctamente)
+        double initialInvestment = inv.getPurchasePrice();
+    
+        // 🔹 Ganancia/pérdida
+        double earnings = currentValue - initialInvestment;
+    
+        // 🔹 Rendimiento %
+        double yield = 0.0;
+        if (initialInvestment > 0) {
+            yield = (earnings / initialInvestment) * 100;
+        }
+    
+        String earningsStr = (earnings >= 0)
+            ? "(+$" + String.format("%.2f", earnings) + ")"
+            : "(-$" + String.format("%.2f", Math.abs(earnings)) + ")";
+    
+        String detailLine = String.format(
+            view.getLocalizedText("msg.format.investmentDetail"),
+            inv.getId(),
+            inv.getAssetId(),
+            inv.getAmount(),
+            currentValue,
+            yield,
+            earningsStr
+        );
+    
         view.printText(detailLine);
     }
 }

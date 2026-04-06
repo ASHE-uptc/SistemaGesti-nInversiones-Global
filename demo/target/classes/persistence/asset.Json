@@ -68,5 +68,12 @@
     "assetType": "CRYPTO",
     "actualPrice": 3200.0,
     "volatility": 0.3
+  },
+  {
+    "id": "A11",
+    "name": "Brave Reward",
+    "assetType": "CRYPTO",
+    "actualPrice": 6000.0,
+    "volatility": 0.1
   }
 ]

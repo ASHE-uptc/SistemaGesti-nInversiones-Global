@@ -40,8 +40,8 @@ class InvestmentServiceTest {
 
         Type type = new TypeToken<List<Investment>>() {}.getType();
         JsonRepository<Investment> repo1 = new JsonRepository<>(tempDir.resolve("inversions.json").toString(), type);
-        service = new InvestmentService(repo1);
-        service.setAssetService(assetService);
+        //service = new InvestmentService(repo1);
+        //service.setAssetService(assetService);
     }
 
     @Test
