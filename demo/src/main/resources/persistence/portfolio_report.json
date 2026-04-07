@@ -1,0 +1,101 @@
+[
+  {
+    "investorId": "I1",
+    "name": "Investor 1",
+    "email": "investor1@email.com",
+    "availableCapital": 10000.0,
+    "currentPortfolioValue": 10000.0,
+    "yieldPercentage": 100.0,
+    "averageRisk": 0.02
+  },
+  {
+    "investorId": "I2",
+    "name": "Investor 2",
+    "email": "investor2@email.com",
+    "availableCapital": 15000.0,
+    "currentPortfolioValue": 7501.5,
+    "yieldPercentage": 0.02,
+    "averageRisk": 0.15
+  },
+  {
+    "investorId": "I3",
+    "name": "Investor 3",
+    "email": "investor3@email.com",
+    "availableCapital": 20000.0,
+    "currentPortfolioValue": 500.0,
+    "yieldPercentage": -88.09523809523809,
+    "averageRisk": 0.1
+  },
+  {
+    "investorId": "I4",
+    "name": "Investor 4",
+    "email": "investor4@email.com",
+    "availableCapital": 12000.0,
+    "currentPortfolioValue": 150000.0,
+    "yieldPercentage": 0.0,
+    "averageRisk": 0.05
+  },
+  {
+    "investorId": "I5",
+    "name": "Investor 5",
+    "email": "investor5@email.com",
+    "availableCapital": 18000.0,
+    "currentPortfolioValue": 1000.0,
+    "yieldPercentage": 0.0,
+    "averageRisk": 0.01
+  },
+  {
+    "investorId": "I6",
+    "name": "Investor 6",
+    "email": "investor6@email.com",
+    "availableCapital": 25000.0,
+    "currentPortfolioValue": 65000.0,
+    "yieldPercentage": 0.0,
+    "averageRisk": 0.35
+  },
+  {
+    "investorId": "I7",
+    "name": "Investor 7",
+    "email": "investor7@email.com",
+    "availableCapital": 9000.0,
+    "currentPortfolioValue": 6000.0,
+    "yieldPercentage": 0.0,
+    "averageRisk": 0.5
+  },
+  {
+    "investorId": "I8",
+    "name": "Investor 8",
+    "email": "investor8@email.com",
+    "availableCapital": 22000.0,
+    "currentPortfolioValue": 6000.0,
+    "yieldPercentage": 0.0,
+    "averageRisk": 0.03
+  },
+  {
+    "investorId": "I9",
+    "name": "Investor 9",
+    "email": "investor9@email.com",
+    "availableCapital": 30000.0,
+    "currentPortfolioValue": 1802.5,
+    "yieldPercentage": 0.1388888888888889,
+    "averageRisk": 0.12
+  },
+  {
+    "investorId": "I10",
+    "name": "Investor 10",
+    "email": "investor10@email.com",
+    "availableCapital": 11000.0,
+    "currentPortfolioValue": 6400.0,
+    "yieldPercentage": 0.0,
+    "averageRisk": 0.3
+  },
+  {
+    "investorId": "I013",
+    "name": "Juan David Cardenas",
+    "email": "juandavid@gmail.com",
+    "availableCapital": 1678115.0,
+    "currentPortfolioValue": 310660.5,
+    "yieldPercentage": 0.9014729525634572,
+    "averageRisk": 0.04916382996872792
+  }
+]

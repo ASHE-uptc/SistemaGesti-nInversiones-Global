@@ -14,18 +14,68 @@ import co.edu.uptc.service.InvestorService;
 import co.edu.uptc.service.PortfolioService;
 import co.edu.uptc.view.ConsoleView;
 
+import co.edu.uptc.model.PortfolioReportDTO;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 public class PortfolioController {
 
     private final PortfolioService portfolioService;
     private final InvestmentService investmentService;
     private final InvestorService investorService;
     private final ConsoleView view;
+    private final String persistencePath = "demo/src/main/resources/persistence/";
 
     public PortfolioController(PortfolioService portfolioService, InvestmentService investmentService, InvestorService investorService, ConsoleView view) {
         this.portfolioService = portfolioService;
         this.investmentService = investmentService;
         this.investorService = investorService;
         this.view = view;
+    }
+
+    public void handleExportReports() {
+        try {
+            view.printText("\n" + view.getLocalizedText("msg.report.exporting"));
+            List<PortfolioReportDTO> reportData = portfolioService.generatePortfolioReport();
+            
+            if (reportData.isEmpty()) {
+                view.showMessageByKey("msg.error.notEnoughData");
+                return;
+            }
+
+            exportToCSV(reportData);
+            exportToJSON(reportData);
+
+        } catch (Exception e) {
+            view.printText(view.getLocalizedText("msg.error.system") + " " + e.getMessage());
+        }
+    }
+
+    private void exportToCSV(List<PortfolioReportDTO> data) {
+        String fileName = persistencePath + "portfolio_report.csv";
+        try (FileWriter writer = new FileWriter(fileName)) {
+            writer.write("ID,Nombre,Email,CapitalDisponible,ValorPortafolioActual,Rendimiento(%),RiesgoPromedio\n");
+            for (PortfolioReportDTO entry : data) {
+                writer.write(String.format("%s,%s,%s,%.2f,%.2f,%.2f,%.4f\n", 
+                    entry.getInvestorId(), entry.getName(), entry.getEmail(), 
+                    entry.getAvailableCapital(), entry.getCurrentPortfolioValue(), 
+                    entry.getYieldPercentage(), entry.getAverageRisk()));
+            }
+            view.printText(view.getLocalizedText("msg.success.exportCsv") + " " + fileName);
+        } catch (IOException e) {
+            view.printText(view.getLocalizedText("msg.error.exportCsv") + " " + e.getMessage());
+        }
+    }
+
+    private void exportToJSON(List<PortfolioReportDTO> data) {
+        String fileName = persistencePath + "portfolio_report.json";
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try (FileWriter writer = new FileWriter(fileName)) {
+            gson.toJson(data, writer);
+            view.printText(view.getLocalizedText("msg.success.exportJson") + " " + fileName);
+        } catch (IOException e) {
+            view.printText(view.getLocalizedText("msg.error.exportJson") + " " + e.getMessage());
+        }
     }
 
     public void handleTop5InvestorsReport() {

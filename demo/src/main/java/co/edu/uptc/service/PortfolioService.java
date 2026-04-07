@@ -7,6 +7,10 @@ import co.edu.uptc.model.Asset;
 import co.edu.uptc.model.Investment;
 import co.edu.uptc.model.Investor;
 
+import co.edu.uptc.model.PortfolioReportDTO;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Servicio de agregación de portafolio: cálculos sobre conjuntos de inversiones,
  * como el total de ganancias o pérdidas en un intervalo de fechas (reporte por periodo).
@@ -16,17 +20,32 @@ public class PortfolioService {
     private final InvestmentService inversionService;
     private final AssetService assetService;
 
-    /**
-     * Construye el servicio de portafolio con las dependencias necesarias para valorar
-     * cada inversión con el precio actual del activo.
-     *
-     * @param inversionService servicio que aporta fórmulas de valor, inversión inicial y ganancia
-     * @param assetService servicio que resuelve el precio actual por activo
-     */
     public PortfolioService(InvestmentService inversionService, AssetService assetService, InvestorService investorService) {
         this.inversionService = inversionService;
         this.assetService = assetService;
         this.investorService = investorService; 
+    }
+
+    public List<PortfolioReportDTO> generatePortfolioReport() {
+        List<Investor> investors = investorService.listInversionists();
+        List<PortfolioReportDTO> report = new ArrayList<>();
+        
+        for (Investor inv : investors) {
+            double currentVal = calculateCurrentPortfolioValue(inv);
+            double yield = calculateYieldPercentage(inv);
+            double risk = calculatePortfolioRisk(inv);
+            
+            report.add(new PortfolioReportDTO(
+                inv.getId(),
+                inv.getName(),
+                inv.getEmail(),
+                inv.getAvailableCapital(),
+                currentVal,
+                yield,
+                risk
+            ));
+        }
+        return report;
     }
 
     /**

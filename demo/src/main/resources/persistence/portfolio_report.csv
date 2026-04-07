@@ -1,0 +1,12 @@
+ID,Nombre,Email,CapitalDisponible,ValorPortafolioActual,Rendimiento(%),RiesgoPromedio
+I1,Investor 1,investor1@email.com,10000,00,10000,00,100,00,0,0200
+I2,Investor 2,investor2@email.com,15000,00,7501,50,0,02,0,1500
+I3,Investor 3,investor3@email.com,20000,00,500,00,-88,10,0,1000
+I4,Investor 4,investor4@email.com,12000,00,150000,00,0,00,0,0500
+I5,Investor 5,investor5@email.com,18000,00,1000,00,0,00,0,0100
+I6,Investor 6,investor6@email.com,25000,00,65000,00,0,00,0,3500
+I7,Investor 7,investor7@email.com,9000,00,6000,00,0,00,0,5000
+I8,Investor 8,investor8@email.com,22000,00,6000,00,0,00,0,0300
+I9,Investor 9,investor9@email.com,30000,00,1802,50,0,14,0,1200
+I10,Investor 10,investor10@email.com,11000,00,6400,00,0,00,0,3000
+I013,Juan David Cardenas,juandavid@gmail.com,1678115,00,310660,50,0,90,0,0492
