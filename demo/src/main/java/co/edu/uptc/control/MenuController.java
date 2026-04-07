@@ -238,6 +238,7 @@ public class MenuController {
             view.showMessageByKey("msg.menu.portfolio.opt1");
             view.showMessageByKey("msg.menu.portfolio.opt2");
             view.showMessageByKey("msg.menu.portfolio.opt3");
+            view.showMessageByKey("msg.menu.portfolio.opt4");
             view.printText("0. Volver");
             int option = view.readIntInput("msg.input.select");
             switch (option) {
@@ -245,6 +246,7 @@ public class MenuController {
                 case 2: portfolioController.handleGlobalEarningsReport(); break;
                 case 3: String investorId = view.readStringInput("msg.input.investorId");
                 portfolioController.handleInvestorEarningsReport(investorId); break;
+                case 4: portfolioController.handleExportReports(); break;
                 case 0: back = true; break;
             }
         }
