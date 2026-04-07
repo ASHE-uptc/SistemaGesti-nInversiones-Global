@@ -114,10 +114,22 @@ public void handleCreateInvestor() {
                 view.showMessageByKey("msg.error.noInvestors");
             } else {
                 for (Investor inv : investors) {
-                    // Cambiamos las palabras en español por términos universales en el formateo de datos
-                    view.printText(String.format("- [ID: %s] %s | Email: %s | Capital: $%.2f | Risk: %s",
-                            inv.getId(), inv.getName(), inv.getEmail(), inv.getAvailableCapital(), inv.getRiskProfile()));
-                }
+                   String template = view.getLocalizedText("msg.format.investorDetail");
+                   // Dentro del for:
+String riskKey = "enum.RiskProfile." + inv.getRiskProfile().name();
+String translatedRisk = view.getLocalizedText(riskKey);
+
+String formattedLine = String.format(template, 
+    inv.getId(), 
+    inv.getName(), 
+    inv.getEmail(), 
+    inv.getAvailableCapital(), 
+    translatedRisk // <--- Usamos la traducción
+        );
+
+        // 3. Imprimimos la línea ya procesada
+        view.printText(formattedLine);
+    }
             }
         } catch (RuntimeException e) {
             view.showMessageByKey("msg.error.listInvestors");

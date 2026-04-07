@@ -35,56 +35,62 @@ public class InvestmentController {
     /**
      * Maneja el registro de una nueva inversión.
      */
-    public void handleCreateInvestment(String investorId) {
-        try {
-            view.showMessageByKey("msg.title.createInvestment");
+  public void handleCreateInvestment(String investorId) {
+    try {
+        view.showMessageByKey("msg.title.createInvestment");
 
-            String investmentId = view.readStringInput("msg.input.investmentId");
-            String assetId = view.readStringInput("msg.input.assetId");
-            double amount = view.readDoubleInput("msg.input.amount");
+        String investmentId = view.readStringInput("msg.input.investmentId");
+        String assetId = view.readStringInput("msg.input.assetId");
+        double amount = view.readDoubleInput("msg.input.amount");
 
-            Asset asset = assetService.findById(assetId);
-            if (asset == null) {
-                view.showMessageByKey("msg.error.assetNotFound");
-                return; 
-            }
-
-            Investor investor = investorService.findById(investorId);
-            if (investor == null) {
-                view.showMessageByKey("msg.error.investorNotFound");
-                return;
-            }
-
-            double purchasePrice = asset.getActualPrice();
-            LocalDate date = LocalDate.now();
-            LocalTime time = LocalTime.now();
-
-            Investment inv= investmentService.createInvestment(
-                investmentId, investorId, assetId, amount,
-                purchasePrice, date, time, 
-                investor.getAvailableCapital(), investor.getRiskProfile(), asset.getAssetType()
-            );
-
-            investor.getInvestments().add(inv);
-            investor.setAvailableCapital(
-                investor.getAvailableCapital() - inv.getPurchasePrice()
-            );
-            investorService.updateInvestor(investor);
-
-            // IMPORTANTE: Aquí deberías descontar el capital del inversionista
-            // investorService.deductCapital(investorId, currentValue);
-
-            view.showMessageByKey("msg.success.investmentCreated");
-
-        } catch (OperationCancelledException e) {
-            view.printText(e.getMessage());
-        } catch (InsufficientCapitalException | IncompatibleRiskProfileException e) {
-            view.printText("Regla de Negocio: " + e.getMessage());
-        } catch (RuntimeException e) {
-            view.showMessageByKey("msg.error.system");
-            view.printText(e.getMessage());
+        Asset asset = assetService.findById(assetId);
+        if (asset == null) {
+            view.showMessageByKey("msg.error.assetNotFound");
+            return; 
         }
+
+        Investor investor = investorService.findById(investorId);
+        if (investor == null) {
+            view.showMessageByKey("msg.error.investorNotFound");
+            return;
+        }
+
+        double purchasePrice = asset.getActualPrice();
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+
+        // El Service lanzará IllegalArgumentException si el investmentId ya existe
+        Investment inv = investmentService.createInvestment(
+            investmentId, investorId, assetId, amount,
+            purchasePrice, date, time, 
+            investor.getAvailableCapital(), investor.getRiskProfile(), asset.getAssetType()
+        );
+
+        // Si el ID era único, el código continúa aquí:
+        investor.getInvestments().add(inv);
+        investor.setAvailableCapital(
+            investor.getAvailableCapital() - ((assetService.findById(assetId).getActualPrice()) * amount) // Asegúrate si es precio unitario o total
+        );
+        investorService.updateInvestor(investor);
+
+        view.showMessageByKey("msg.success.investmentCreated");
+
+    } catch (OperationCancelledException e) {
+        view.printText(e.getMessage());
+    } catch (IllegalArgumentException e) {
+        // Atrapamos el error de ID duplicado del Service
+        if ("INVESTMENT_ID_EXISTS".equals(e.getMessage())) {
+            view.showMessageByKey("msg.error.investmentIdExists");
+        } else {
+            view.printText("Error: " + e.getMessage());
+        }
+    } catch (InsufficientCapitalException | IncompatibleRiskProfileException e) {
+        view.printText("Regla de Negocio: " + e.getMessage());
+    } catch (RuntimeException e) {
+        view.showMessageByKey("msg.error.system");
+        view.printText(e.getMessage());
     }
+}
 
     /**
      * Maneja el listado de todas las inversiones en el sistema.

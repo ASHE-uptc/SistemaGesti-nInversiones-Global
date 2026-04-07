@@ -53,11 +53,9 @@ public class InvestmentService {
      */
     public Investment createInvestment(String id, String inversionistId, String assetId, double amount, double purchasePrice,
             LocalDate date, LocalTime time, double availableCapital, RiskProfile riskProfile, AssetType assetType){
+                
         
         purchasePrice = calculatePurchasePrice(assetService.findById(assetId).getActualPrice(), amount);
-        
-        System.out.println("Capital disponible recibido: " + availableCapital);
-        System.out.println("Precio total inversión: " + purchasePrice);
         // validar capital
         if (!validateAvailableCapital(availableCapital, purchasePrice)) {
             throw new InsufficientCapitalException("Capital insuficiente para registrar la inversión.");
@@ -67,13 +65,27 @@ public class InvestmentService {
         validateRiskProfile(riskProfile, assetType);
 
         Investment investment = new Investment(id, inversionistId, assetId, amount, purchasePrice, date, time);
-        try {
+    // 1. Cargamos todas las inversiones existentes
+    List<Investment> allInvestments = repo.findAll();
+
+    // 2. Verificamos si el ID ya está en uso
+    boolean idExists = allInvestments.stream()
+            .anyMatch(inv -> inv.getId().equalsIgnoreCase(investment.getId()));
+
+    if (idExists) {
+        // Lanzamos una excepción para que el controlador sepa que el ID está repetido
+        throw new IllegalArgumentException("INVESTMENT_ID_EXISTS");
+    }
+
+    // 3. Si no existe, guardamos la inversión
+   try {
             repo.save(investment);
         } catch (RuntimeException e) {
-            throw new RuntimeException("Error al guardar la inversión en persistencia.", e);
+            throw new RuntimeException(e);
         }
         return investment;
-    }
+}
+        
 
     /**
      * Devuelve todas las inversiones registradas en persistencia.
