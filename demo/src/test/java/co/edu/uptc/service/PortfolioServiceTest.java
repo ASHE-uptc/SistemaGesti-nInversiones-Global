@@ -65,7 +65,8 @@ class PortfolioServiceTest {
                 LocalDate.of(2026, 1, 1),
                 LocalDate.of(2026, 1, 31));
 
-        assertEquals(12.0, total, 0.0001);
+        // Valor actual: 2 × 10 = 20; inversión inicial total = 4 → ganancia = 16
+        assertEquals(16.0, total, 0.0001);
     }
 
     @Test

@@ -55,9 +55,10 @@ public class PortfolioService {
 
 
                 double actualValue = inversionService.calculateCurrentValue(inv);
-                double purchaseValue = inversionService.calculatePurchasePrice(inv.getPurchasePrice(), inv.getAmount());
+                // purchasePrice en persistencia es el desembolso total de la operación, no el precio unitario
+                double initialInvestment = inv.getPurchasePrice();
 
-                total += inversionService.calculateEarnings(actualValue, purchaseValue);
+                total += inversionService.calculateEarnings(actualValue, initialInvestment);
             }
         }
 

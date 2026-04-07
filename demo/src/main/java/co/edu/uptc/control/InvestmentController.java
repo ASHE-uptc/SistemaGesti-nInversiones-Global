@@ -245,6 +245,6 @@ public class InvestmentController {
         view.printText(String.format("  %-24s $%,.2f", currValLabel, currentValue));
         view.printText(String.format("  %-24s $%,.2f", unitCurrLabel, unitCurrent));
         view.printText(String.format("  %-24s $%,.2f", unitInitLabel, unitInitial));
-        view.printText(String.format("  %-24s %.2f%% %s", yieldLabel, yield, earningsStr));
+        view.printText(String.format("  %-24s %.2f%% %s\n", yieldLabel, yield, earningsStr));
     }
 }

@@ -1,146 +1,155 @@
 [
   {
-    "id": "INV1",
-    "inversionistId": "I1",
-    "assetId": "A1",
+    "id": "INV001",
+    "inversionistId": "I001",
+    "assetId": "A001",
     "amount": 5.0,
     "purchasePrice": 5000.0,
     "date": "2024-01-10",
     "time": "10:30"
   },
   {
-    "id": "INV2",
-    "inversionistId": "I2",
-    "assetId": "A2",
+    "id": "INV002",
+    "inversionistId": "I002",
+    "assetId": "A002",
     "amount": 3.0,
     "purchasePrice": 7500.0,
     "date": "2024-01-12",
     "time": "11:00"
   },
   {
-    "id": "INV3",
-    "inversionistId": "I3",
-    "assetId": "A3",
+    "id": "INV003",
+    "inversionistId": "I003",
+    "assetId": "A003",
     "amount": 10.0,
     "purchasePrice": 4200.0,
     "date": "2024-01-15",
     "time": "09:45"
   },
   {
-    "id": "INV4",
-    "inversionistId": "I4",
-    "assetId": "A4",
+    "id": "INV004",
+    "inversionistId": "I004",
+    "assetId": "A004",
     "amount": 1.0,
     "purchasePrice": 150000.0,
     "date": "2024-01-18",
     "time": "14:20"
   },
   {
-    "id": "INV5",
-    "inversionistId": "I5",
-    "assetId": "A5",
+    "id": "INV005",
+    "inversionistId": "I005",
+    "assetId": "A005",
     "amount": 1000.0,
     "purchasePrice": 1000.0,
     "date": "2024-01-20",
     "time": "08:15"
   },
   {
-    "id": "INV6",
-    "inversionistId": "I6",
-    "assetId": "A6",
+    "id": "INV006",
+    "inversionistId": "I006",
+    "assetId": "A006",
     "amount": 1.0,
     "purchasePrice": 65000.0,
     "date": "2024-01-22",
     "time": "16:40"
   },
   {
-    "id": "INV7",
-    "inversionistId": "I7",
-    "assetId": "A7",
+    "id": "INV007",
+    "inversionistId": "I007",
+    "assetId": "A007",
     "amount": 2.0,
     "purchasePrice": 6000.0,
     "date": "2024-01-25",
     "time": "13:10"
   },
   {
-    "id": "INV8",
-    "inversionistId": "I8",
-    "assetId": "A8",
+    "id": "INV008",
+    "inversionistId": "I008",
+    "assetId": "A008",
     "amount": 5.0,
     "purchasePrice": 6000.0,
     "date": "2024-01-28",
     "time": "10:50"
   },
   {
-    "id": "INV9",
-    "inversionistId": "I9",
-    "assetId": "A9",
+    "id": "INV009",
+    "inversionistId": "I009",
+    "assetId": "A009",
     "amount": 10.0,
     "purchasePrice": 1800.0,
     "date": "2024-02-01",
     "time": "12:00"
   },
   {
-    "id": "INV10",
-    "inversionistId": "I10",
-    "assetId": "A10",
+    "id": "INV010",
+    "inversionistId": "I010",
+    "assetId": "A010",
     "amount": 2.0,
     "purchasePrice": 6400.0,
     "date": "2024-02-03",
     "time": "15:30"
   },
   {
-    "id": "I013",
+    "id": "INV011",
     "inversionistId": "I013",
-    "assetId": "A2",
+    "assetId": "A002",
     "amount": 2.0,
     "purchasePrice": 5001.0,
     "date": "2026-04-06",
-    "time": "20:32:41.310367900"
+    "time": "20:32:41"
   },
   {
-    "id": "INV098",
+    "id": "INV012",
     "inversionistId": "I013",
-    "assetId": "A3",
+    "assetId": "A003",
     "amount": 6.0,
     "purchasePrice": 2524.5,
     "date": "2026-04-06",
-    "time": "20:43:34.183393600"
+    "time": "20:43:34"
   },
   {
-    "id": "INV056",
+    "id": "INV013",
     "inversionistId": "I013",
-    "assetId": "A1",
+    "assetId": "A001",
     "amount": 5.0,
     "purchasePrice": 5000.0,
     "date": "2026-04-06",
-    "time": "20:47:06.559302200"
+    "time": "20:47:06"
   },
   {
-    "id": "INV055",
+    "id": "INV014",
     "inversionistId": "I013",
-    "assetId": "A3",
+    "assetId": "A003",
     "amount": 6.0,
     "purchasePrice": 2524.5,
     "date": "2026-04-06",
-    "time": "20:49:17.433545"
+    "time": "20:49:17"
   },
   {
-    "id": "INV054",
+    "id": "INV015",
     "inversionistId": "I013",
-    "assetId": "A9",
+    "assetId": "A009",
     "amount": 2.0,
     "purchasePrice": 360.5,
     "date": "2026-04-06",
-    "time": "20:49:39.881376700"
+    "time": "20:49:39"
   },
   {
-    "id": "INV053",
+    "id": "INV016",
     "inversionistId": "I013",
-    "assetId": "A4",
+    "assetId": "A004",
     "amount": 2.0,
     "purchasePrice": 300000.0,
     "date": "2026-04-06",
-    "time": "21:17:57.709175600"
+    "time": "21:17:57"
+  },
+  {
+    "id": "INV017",
+    "inversionistId": "I013",
+    "assetId": "A001",
+    "amount": 3.0,
+    "purchasePrice": 6000.0,
+    "date": "2026-04-07",
+    "time": "00:23:30"
   }
 ]
