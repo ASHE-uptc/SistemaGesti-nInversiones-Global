@@ -1,0 +1,55 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+--no-fonts
+-classpath
+'C:/Users/haxel/.m2/repository/com/google/code/gson/gson/2.13.1/gson-2.13.1.jar;C:/Users/haxel/.m2/repository/com/google/errorprone/error_prone_annotations/2.38.0/error_prone_annotations-2.38.0.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'17'
+-sourcepath
+'C:/Users/haxel/Desktop/Sistema de Gestión de Inversiones Global/demo/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2026. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/haxel/Desktop/Sistema de Gestión de Inversiones Global/demo/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'demo 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'demo 1.0-SNAPSHOT API'
+co.edu.uptc.control
+co.edu.uptc.exception
+co.edu.uptc.model
+co.edu.uptc.model.enums
+co.edu.uptc.repository
+co.edu.uptc.service
+co.edu.uptc.util
+co.edu.uptc.view
+C:\Users\haxel\.m2\repository\com\google\code\gson\gson\2.13.1\gson-2.13.1.jar = 1773933998454
+C:\Users\haxel\.m2\repository\com\google\errorprone\error_prone_annotations\2.38.0\error_prone_annotations-2.38.0.jar = 1773933998503
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\src\main\java = 1775081702449
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\target\reports\apidocs\allclasses-index.html = 1775542799647
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\target\reports\apidocs\allpackages-index.html = 1775542799651
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\target\reports\apidocs\element-list = 1775542799355
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\target\reports\apidocs\help-doc.html = 1775542799710
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\target\reports\apidocs\index-all.html = 1775542799697
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\target\reports\apidocs\index.html = 1775542799626
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\target\reports\apidocs\member-search-index.js = 1775542799660
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\target\reports\apidocs\module-search-index.js = 1775542799653
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\target\reports\apidocs\overview-summary.html = 1775542799703
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\target\reports\apidocs\overview-tree.html = 1775542799620
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\target\reports\apidocs\package-search-index.js = 1775542799656
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\target\reports\apidocs\search.html = 1775542799701
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\target\reports\apidocs\serialized-form.html = 1775542799454
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\target\reports\apidocs\tag-search-index.js = 1775542799662
+C:\Users\haxel\Desktop\Sistema de Gestión de Inversiones Global\demo\target\reports\apidocs\type-search-index.js = 1775542799657

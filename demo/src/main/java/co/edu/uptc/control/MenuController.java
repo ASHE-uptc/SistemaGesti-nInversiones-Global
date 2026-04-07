@@ -7,6 +7,12 @@ import co.edu.uptc.service.InvestorService;
 import co.edu.uptc.service.PortfolioService;
 import co.edu.uptc.view.ConsoleView;
 
+/**
+ * Orquesta los menús principales del sistema (inicio, administrador y portal de inversionista).
+ *
+ * <p>Este controlador instancia los servicios y delega operaciones a los controladores de cada módulo
+ * (activos, inversionistas, inversiones y portafolio).</p>
+ */
 public class MenuController {
 
     private final ConsoleView view;
@@ -15,6 +21,11 @@ public class MenuController {
     private final InvestmentController investmentController;
     private final PortfolioController portfolioController;
 
+    /**
+     * Construye el controlador de menús e inicializa servicios/controladores del sistema.
+     *
+     * @param view vista de consola para entrada/salida e i18n
+     */
     public MenuController(ConsoleView view) {
         this.view = view;
 
@@ -238,6 +249,7 @@ public class MenuController {
             view.showMessageByKey("msg.menu.portfolio.opt1");
             view.showMessageByKey("msg.menu.portfolio.opt2");
             view.showMessageByKey("msg.menu.portfolio.opt3");
+            view.showMessageByKey("msg.menu.portfolio.opt4");
             view.printText("0. Volver");
             int option = view.readIntInput("msg.input.select");
             switch (option) {
@@ -245,6 +257,7 @@ public class MenuController {
                 case 2: portfolioController.handleGlobalEarningsReport(); break;
                 case 3: String investorId = view.readStringInput("msg.input.investorId");
                 portfolioController.handleInvestorEarningsReport(investorId); break;
+                case 4: portfolioController.handleExportGlobalEarningsJson(); break;
                 case 0: back = true; break;
             }
         }

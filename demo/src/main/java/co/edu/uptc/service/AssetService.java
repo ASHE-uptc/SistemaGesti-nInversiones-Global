@@ -16,11 +16,19 @@ import co.edu.uptc.util.IdFormats;
 public class AssetService {
     private final JsonRepository<Asset> repo;
 
+    /**
+     * Crea el servicio usando persistencia JSON por defecto del proyecto.
+     */
     public AssetService() {
         Type type = new TypeToken<List<Asset>>() {}.getType();
         this.repo = new JsonRepository<>("demo\\src\\main\\resources\\persistence\\asset.Json\\", type);
     }
 
+    /**
+     * Crea el servicio con un repositorio inyectado (útil para pruebas).
+     *
+     * @param repo repositorio JSON de activos
+     */
     public AssetService(JsonRepository<Asset> repo) {
         this.repo = repo;
     }
@@ -78,7 +86,7 @@ public class AssetService {
      * Busca un activo por su identificador.
      *
      * @param id identificador del activo
-     * @return el {@link asset} encontrado, o {@code null} si no existe
+     * @return el {@link Asset} encontrado, o {@code null} si no existe
      */
     public Asset findById(String id) {
         try {

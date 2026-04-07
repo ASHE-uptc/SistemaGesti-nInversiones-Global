@@ -2,18 +2,25 @@
 
 import co.edu.uptc.control.MenuController;
 
-//Comentario pa commit
-<span class="nc" id="L6">public class Main {</span>
+/**
+ * Punto de entrada de la aplicación de consola.
+ */
+<span class="nc" id="L8">public class Main {</span>
 
+    /**
+     * Inicializa la vista y el controlador principal y arranca el menú.
+     *
+     * @param args argumentos de línea de comandos (no usados)
+     */
     public static void main(String[] args) {
         // 1. Instanciamos unicamente la Vista
-<span class="nc" id="L10">        ConsoleView view = new ConsoleView();</span>
+<span class="nc" id="L17">        ConsoleView view = new ConsoleView();</span>
 
         // 2. Instanciamos SOLO el controlador principal del menu
-<span class="nc" id="L13">        MenuController menuController = new MenuController(view);</span>
+<span class="nc" id="L20">        MenuController menuController = new MenuController(view);</span>
         
         // 3. Arrancamos
-<span class="nc" id="L16">        menuController.runStartMenu();</span>
-<span class="nc" id="L17">    }</span>
+<span class="nc" id="L23">        menuController.runStartMenu();</span>
+<span class="nc" id="L24">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

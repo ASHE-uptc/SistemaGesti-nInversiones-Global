@@ -8,8 +8,20 @@ import java.util.Scanner;
 
 import co.edu.uptc.exception.OperationCancelledException;
 
+/**
+ * Vista de consola del sistema.
+ *
+ * <p>Centraliza la entrada/salida por consola y la resolución de textos i18n mediante
+ * {@link ResourceBundle}.</p>
+ */
 public class ConsoleView {
 
+    /**
+     * Lee una fecha como texto usando la misma validación de cancelación que {@link #readStringInput(String)}.
+     *
+     * @param messageKey llave i18n del prompt
+     * @return texto ingresado por el usuario
+     */
     public String readDateInput(String messageKey) {
         return readStringInput(messageKey); 
     }
@@ -17,6 +29,9 @@ public class ConsoleView {
     private final Scanner scanner;
     private ResourceBundle messages;
 
+    /**
+     * Crea la vista de consola y carga el idioma por defecto (español).
+     */
     public ConsoleView() {
         this.scanner = new Scanner(System.in);
         loadLanguage("es"); // Español por defecto al iniciar
@@ -40,6 +55,9 @@ public class ConsoleView {
     /**
      * TRUCO SALVAVIDAS: Intenta buscar la llave en el .properties. 
      * Si no existe (porque le pasamos un texto normal concatenado), devuelve el texto tal cual.
+     *
+     * @param textOrKey llave del bundle o texto plano
+     * @return texto localizado si existe la llave; en caso contrario el texto original
      */
     public String getLocalizedText(String textOrKey) {
         try {

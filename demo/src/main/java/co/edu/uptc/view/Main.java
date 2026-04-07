@@ -2,9 +2,16 @@ package co.edu.uptc.view;
 
 import co.edu.uptc.control.MenuController;
 
-//Comentario pa commit
+/**
+ * Punto de entrada de la aplicación de consola.
+ */
 public class Main {
 
+    /**
+     * Inicializa la vista y el controlador principal y arranca el menú.
+     *
+     * @param args argumentos de línea de comandos (no usados)
+     */
     public static void main(String[] args) {
         // 1. Instanciamos unicamente la Vista
         ConsoleView view = new ConsoleView();

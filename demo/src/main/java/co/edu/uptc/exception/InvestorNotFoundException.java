@@ -5,6 +5,11 @@ package co.edu.uptc.exception;
  */
 public class InvestorNotFoundException extends RuntimeException {
 
+    /**
+     * Crea la excepción con un mensaje descriptivo.
+     *
+     * @param message detalle del error
+     */
     public InvestorNotFoundException(String message) {
         super(message);
     }

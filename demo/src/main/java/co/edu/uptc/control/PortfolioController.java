@@ -3,6 +3,7 @@ package co.edu.uptc.control;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
@@ -14,6 +15,11 @@ import co.edu.uptc.service.InvestorService;
 import co.edu.uptc.service.PortfolioService;
 import co.edu.uptc.view.ConsoleView;
 
+/**
+ * Controlador del módulo de portafolio y reportes.
+ *
+ * <p>Incluye reportes globales por periodo, reportes por inversionista, rankings y exportación.</p>
+ */
 public class PortfolioController {
 
     private final PortfolioService portfolioService;
@@ -21,6 +27,14 @@ public class PortfolioController {
     private final InvestorService investorService;
     private final ConsoleView view;
 
+    /**
+     * Crea el controlador de portafolio.
+     *
+     * @param portfolioService servicio de portafolio
+     * @param investmentService servicio de inversiones
+     * @param investorService servicio de inversionistas
+     * @param view vista de consola
+     */
     public PortfolioController(PortfolioService portfolioService, InvestmentService investmentService, InvestorService investorService, ConsoleView view) {
         this.portfolioService = portfolioService;
         this.investmentService = investmentService;
@@ -28,6 +42,9 @@ public class PortfolioController {
         this.view = view;
     }
 
+    /**
+     * Genera el reporte Top 5 de inversionistas por rendimiento.
+     */
     public void handleTop5InvestorsReport() {
         try {
             view.showMessageByKey("msg.title.top5Investors");
@@ -135,6 +152,9 @@ public class PortfolioController {
             view.printText(view.getLocalizedText("msg.error.system") + " " + e.getMessage());
         }
     }
+    /**
+     * Exporta el reporte de portafolio a CSV.
+     */
     public void handleExportReportCSV() {
         try {
             view.printText("\n" + view.getLocalizedText("msg.report.exportingCsv"));
@@ -167,6 +187,53 @@ public class PortfolioController {
 
         } catch (Exception e) {
             view.printText(view.getLocalizedText("msg.error.system") + " " + e.getMessage());
+        }
+    }
+
+    /**
+     * Exporta únicamente las ganancias/pérdidas globales de un rango de fechas a un archivo JSON.
+     *
+     * <p>El archivo generado se llama {@code reports.json} y contiene el rango consultado y el total calculado.</p>
+     */
+    public void handleExportGlobalEarningsJson() {
+        try {
+            view.showMessageByKey("msg.title.globalReport");
+
+            LocalDate startDate = promptForDate("msg.input.startDate");
+            LocalDate endDate = promptForDate("msg.input.endDate");
+
+            if (startDate.isAfter(endDate)) {
+                view.showMessageByKey("msg.error.invalidDateRange");
+                return;
+            }
+
+            view.printText("\n" + view.getLocalizedText("msg.report.exportingJson"));
+
+            List<Investment> allInvestments = investmentService.listInvestments();
+            double totalEarnings = portfolioService.calculateEarningsByPeriod(allInvestments, startDate, endDate);
+
+            String fileName = "reports.json";
+            String generatedAt = LocalDateTime.now().toString();
+
+            String json = "{\n"
+                + "  \"startDate\": \"" + startDate + "\",\n"
+                + "  \"endDate\": \"" + endDate + "\",\n"
+                + "  \"totalEarnings\": " + String.format(java.util.Locale.ROOT, "%.2f", totalEarnings) + ",\n"
+                + "  \"generatedAt\": \"" + generatedAt + "\"\n"
+                + "}\n";
+
+            try (FileWriter writer = new FileWriter(fileName)) {
+                writer.write(json);
+            }
+
+            view.printText(view.getLocalizedText("msg.success.exportJson") + " " + fileName);
+        } catch (OperationCancelledException e) {
+            view.printText(e.getMessage());
+        } catch (IOException e) {
+            view.printText(view.getLocalizedText("msg.error.exportJson") + " " + e.getMessage());
+        } catch (RuntimeException e) {
+            view.showMessageByKey("msg.error.system");
+            view.printText(e.getMessage());
         }
     }
 

@@ -10,11 +10,22 @@ import co.edu.uptc.model.enums.RiskProfile;
 import co.edu.uptc.service.InvestorService;
 import co.edu.uptc.view.ConsoleView;
 
+/**
+ * Controlador del módulo de inversionistas.
+ *
+ * <p>Gestiona registro, login y operaciones CRUD de inversionistas mediante la consola.</p>
+ */
 public class InvestorController {
 
     private final InvestorService investorService;
     private final ConsoleView view;
 
+    /**
+     * Crea el controlador de inversionistas.
+     *
+     * @param investorService servicio de inversionistas
+     * @param view vista de consola
+     */
     public InvestorController(InvestorService investorService, ConsoleView view) {
         this.investorService = investorService;
         this.view = view;

@@ -9,11 +9,22 @@ import co.edu.uptc.exception.OperationCancelledException;
 
 import java.util.List;
 
+/**
+ * Controlador del módulo de activos.
+ *
+ * <p>Gestiona la interacción de consola para crear, listar, actualizar y consultar activos.</p>
+ */
 public class AssetController {
     
     private final AssetService assetService;
     private final ConsoleView view;
 
+    /**
+     * Crea el controlador de activos.
+     *
+     * @param assetService servicio de activos
+     * @param view vista de consola
+     */
     public AssetController(AssetService assetService, ConsoleView view) {
         this.assetService = assetService;
         this.view = view;
@@ -173,6 +184,9 @@ public class AssetController {
             view.printText(e.getMessage());
         }
     }
+    /**
+     * Maneja el filtrado de activos por tipo.
+     */
     public void handleFilterByType() {
         try {
             view.printText("\n--- BUSCAR ACTIVOS POR TIPO ---");

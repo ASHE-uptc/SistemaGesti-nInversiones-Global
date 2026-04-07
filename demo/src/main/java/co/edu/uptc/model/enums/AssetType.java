@@ -1,5 +1,8 @@
 package co.edu.uptc.model.enums;
 
+/**
+ * Tipos de activos soportados por el sistema, cada uno con un nivel de riesgo asociado.
+ */
 public enum AssetType {
 
     //1 -> Bajo Riesgo
@@ -22,6 +25,11 @@ public enum AssetType {
         this.riskLevel=riskLevel;
     }
 
+    /**
+     * Retorna el nivel de riesgo asociado al tipo de activo.
+     *
+     * @return nivel de riesgo (1 bajo .. 5 muy alto)
+     */
     public int getRiskLevel(){
         return riskLevel;
     }

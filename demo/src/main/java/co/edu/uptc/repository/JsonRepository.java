@@ -10,13 +10,26 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-// ¡AQUÍ ESTÁ LA MAGIA! Ahora sí implementa la interfaz
+/**
+ * Implementación de {@link Repository} respaldada por un archivo JSON.
+ *
+ * <p>Serializa/deserializa colecciones completas del tipo {@code T} usando Gson, incluyendo soporte
+ * para {@link LocalDate} y {@link LocalTime}.</p>
+ *
+ * @param <T> tipo de entidad persistida
+ */
 public class JsonRepository<T> implements Repository<T> {
 
     private final String filePath;
     private final Type type;
     private final Gson gson;
 
+    /**
+     * Crea un repositorio JSON.
+     *
+     * @param filePath ruta del archivo JSON
+     * @param type tipo Gson de la lista de entidades
+     */
     public JsonRepository(String filePath, Type type) {
         this.filePath = filePath;
         this.type = type;

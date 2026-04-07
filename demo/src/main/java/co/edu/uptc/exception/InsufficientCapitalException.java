@@ -5,6 +5,11 @@ package co.edu.uptc.exception;
  */
 public class InsufficientCapitalException extends RuntimeException {
 
+    /**
+     * Crea la excepción con un mensaje descriptivo.
+     *
+     * @param message detalle del error
+     */
     public InsufficientCapitalException(String message) {
         super(message);
     }

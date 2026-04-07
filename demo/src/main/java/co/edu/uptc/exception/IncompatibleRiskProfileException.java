@@ -5,6 +5,11 @@ package co.edu.uptc.exception;
  */
 public class IncompatibleRiskProfileException extends RuntimeException {
 
+    /**
+     * Crea la excepción con un mensaje descriptivo.
+     *
+     * @param message detalle del error
+     */
     public IncompatibleRiskProfileException(String message) {
         super(message);
     }

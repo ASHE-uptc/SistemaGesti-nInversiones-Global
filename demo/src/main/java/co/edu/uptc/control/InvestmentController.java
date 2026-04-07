@@ -15,6 +15,12 @@ import co.edu.uptc.service.InvestmentService;
 import co.edu.uptc.service.InvestorService;
 import co.edu.uptc.view.ConsoleView;
 
+/**
+ * Controlador del módulo de inversiones.
+ *
+ * <p>Gestiona la creación de inversiones, listados y la impresión de detalles del portafolio
+ * usando salida formateada e i18n.</p>
+ */
 public class InvestmentController {
 
     private final InvestmentService investmentService;
@@ -22,6 +28,14 @@ public class InvestmentController {
     private final InvestorService investorService;
     private final ConsoleView view;
 
+    /**
+     * Crea el controlador de inversiones.
+     *
+     * @param investmentService servicio de inversiones
+     * @param assetService servicio de activos
+     * @param investorService servicio de inversionistas
+     * @param view vista de consola
+     */
     public InvestmentController(InvestmentService investmentService, 
                                 AssetService assetService, 
                                 InvestorService investorService, 

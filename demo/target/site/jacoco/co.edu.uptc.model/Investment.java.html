@@ -3,6 +3,12 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Representa una operación de inversión (compra) realizada por un inversionista sobre un activo.
+ *
+ * &lt;p&gt;El campo {@code purchasePrice} representa el desembolso total de la operación (precio unitario × cantidad)
+ * en el momento de la compra.&lt;/p&gt;
+ */
 public class Investment {
     private String id;
     private String inversionistId;
@@ -12,70 +18,92 @@ public class Investment {
     private LocalDate date;
     private LocalTime time;
 
-    /** Constructor vacío de la clase Inversion. */
-<span class="fc" id="L16">    public Investment() {</span>
-<span class="fc" id="L17">    }</span>
+    /** Constructor vacío requerido para serialización. */
+<span class="fc" id="L22">    public Investment() {</span>
+<span class="fc" id="L23">    }</span>
 
-<span class="fc" id="L19">    public Investment(String id, String inversionistId, String assetId, double amount,</span>
+    /**
+     * Crea una inversión con todos sus datos persistibles.
+     *
+     * @param id identificador de la inversión
+     * @param inversionistId identificador del inversionista
+     * @param assetId identificador del activo
+     * @param amount cantidad de unidades compradas
+     * @param purchasePrice desembolso total de la compra
+     * @param date fecha de la operación
+     * @param time hora de la operación
+     */
+<span class="fc" id="L36">    public Investment(String id, String inversionistId, String assetId, double amount,</span>
             double purchasePrice, LocalDate date, LocalTime time) {
-<span class="fc" id="L21">        this.id = id;</span>
-<span class="fc" id="L22">        this.inversionistId = inversionistId;</span>
-<span class="fc" id="L23">        this.assetId = assetId;</span>
-<span class="fc" id="L24">        this.amount = amount;</span>
-<span class="fc" id="L25">        this.purchasePrice = purchasePrice;</span>
-<span class="fc" id="L26">        this.date = date;</span>
-<span class="fc" id="L27">        this.time = time;</span>
-<span class="fc" id="L28">    }</span>
-
-
-
+<span class="fc" id="L38">        this.id = id;</span>
+<span class="fc" id="L39">        this.inversionistId = inversionistId;</span>
+<span class="fc" id="L40">        this.assetId = assetId;</span>
+<span class="fc" id="L41">        this.amount = amount;</span>
+<span class="fc" id="L42">        this.purchasePrice = purchasePrice;</span>
+<span class="fc" id="L43">        this.date = date;</span>
+<span class="fc" id="L44">        this.time = time;</span>
+<span class="fc" id="L45">    }</span>
+    /** @return identificador de la inversión. */
     public String getId() {
-<span class="fc" id="L33">        return id;</span>
+<span class="fc" id="L48">        return id;</span>
     }
+    /** @param id nuevo identificador de la inversión. */
     public void setId(String id) {
-<span class="nc" id="L36">        this.id = id;</span>
-<span class="nc" id="L37">    }</span>
+<span class="nc" id="L52">        this.id = id;</span>
+<span class="nc" id="L53">    }</span>
+    /** @return identificador del inversionista asociado. */
     public String getInversionistId() {
-<span class="fc" id="L39">        return inversionistId;</span>
+<span class="fc" id="L56">        return inversionistId;</span>
     }
+    /** @param inversionistId nuevo identificador del inversionista asociado. */
     public void setInversionistId(String inversionistId) {
-<span class="nc" id="L42">        this.inversionistId = inversionistId;</span>
-<span class="nc" id="L43">    }</span>
-    public String getAssetId() {
-<span class="fc" id="L45">        return assetId;</span>
-    }
-    public void setAssetId(String assetId) {
-<span class="nc" id="L48">        this.assetId = assetId;</span>
-<span class="nc" id="L49">    }</span>
-    public double getAmount() {
-<span class="fc" id="L51">        return amount;</span>
-    }
-    public void setAmount(double amount) {
-<span class="nc" id="L54">        this.amount = amount;</span>
-<span class="nc" id="L55">    }</span>
-    public double getPurchasePrice() {
-<span class="fc" id="L57">        return purchasePrice;</span>
-    }
-    public void setPurchasePrice(double purchasePrice) {
-<span class="nc" id="L60">        this.purchasePrice= purchasePrice;</span>
+<span class="nc" id="L60">        this.inversionistId = inversionistId;</span>
 <span class="nc" id="L61">    }</span>
+    /** @return identificador del activo asociado. */
+    public String getAssetId() {
+<span class="fc" id="L64">        return assetId;</span>
+    }
+    /** @param assetId nuevo identificador del activo asociado. */
+    public void setAssetId(String assetId) {
+<span class="nc" id="L68">        this.assetId = assetId;</span>
+<span class="nc" id="L69">    }</span>
+    /** @return cantidad de unidades compradas. */
+    public double getAmount() {
+<span class="fc" id="L72">        return amount;</span>
+    }
+    /** @param amount nueva cantidad de unidades compradas. */
+    public void setAmount(double amount) {
+<span class="nc" id="L76">        this.amount = amount;</span>
+<span class="nc" id="L77">    }</span>
+    /** @return desembolso total de la compra (no unitario). */
+    public double getPurchasePrice() {
+<span class="fc" id="L80">        return purchasePrice;</span>
+    }
+    /** @param purchasePrice nuevo desembolso total de la compra. */
+    public void setPurchasePrice(double purchasePrice) {
+<span class="nc" id="L84">        this.purchasePrice= purchasePrice;</span>
+<span class="nc" id="L85">    }</span>
+    /** @return fecha de la operación. */
     public LocalDate getDate() {
-<span class="fc" id="L63">        return date;</span>
+<span class="fc" id="L88">        return date;</span>
     }
+    /** @param date nueva fecha de la operación. */
     public void setDate(LocalDate date) {
-<span class="nc" id="L66">        this.date = date;</span>
-<span class="nc" id="L67">    }</span>
+<span class="nc" id="L92">        this.date = date;</span>
+<span class="nc" id="L93">    }</span>
+    /** @return hora de la operación. */
     public LocalTime getTime() {
-<span class="nc" id="L69">        return time;</span>
+<span class="nc" id="L96">        return time;</span>
     }
+    /** @param time nueva hora de la operación. */
     public void setTime(LocalTime time) {
-<span class="nc" id="L72">        this.time = time;</span>
-<span class="nc" id="L73">    }</span>
+<span class="nc" id="L100">        this.time = time;</span>
+<span class="nc" id="L101">    }</span>
 
     @Override
     public String toString() {
-<span class="nc" id="L77">        return &quot;Inversion [id=&quot; + id + &quot;, inversionistId=&quot; + inversionistId + &quot;, assetId=&quot; + assetId + &quot;, amount=&quot;</span>
-<span class="nc" id="L78">                + amount + &quot;, purchasePrice=&quot; + purchasePrice + &quot;, date=&quot; + date + &quot;, time=&quot; + time + &quot;]&quot;;</span>
+<span class="nc" id="L105">        return &quot;Inversion [id=&quot; + id + &quot;, inversionistId=&quot; + inversionistId + &quot;, assetId=&quot; + assetId + &quot;, amount=&quot;</span>
+<span class="nc" id="L106">                + amount + &quot;, purchasePrice=&quot; + purchasePrice + &quot;, date=&quot; + date + &quot;, time=&quot; + time + &quot;]&quot;;</span>
     }
 
     

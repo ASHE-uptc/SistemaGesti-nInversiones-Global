@@ -21,11 +21,19 @@ import co.edu.uptc.util.IdFormats;
 public class InvestorService {
     private final JsonRepository<Investor> repo;
 
+    /**
+     * Crea el servicio usando persistencia JSON por defecto del proyecto.
+     */
     public InvestorService() {
         Type type = new TypeToken<List<Investor>>() {}.getType();
         this.repo = new JsonRepository<>("demo/src/main/resources/persistence/investor.json", type);
     }
 
+    /**
+     * Crea el servicio con un repositorio inyectado (útil para pruebas).
+     *
+     * @param repo repositorio JSON de inversionistas
+     */
     public InvestorService(JsonRepository<Investor> repo) {
         this.repo = repo;
     }

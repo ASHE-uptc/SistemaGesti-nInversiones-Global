@@ -23,11 +23,24 @@ import co.edu.uptc.util.IdFormats;
 public class InvestmentService {
     private final JsonRepository<Investment> repo;
     private final AssetService assetService;
+
+    /**
+     * Crea el servicio usando persistencia JSON por defecto del proyecto.
+     *
+     * @param assetService servicio de activos usado para resolver precios y tipos
+     */
     public InvestmentService(AssetService assetService) {
         Type type = new TypeToken<List<Investment>>() {}.getType();
         this.repo = new JsonRepository<>("demo\\src\\main\\resources\\persistence\\investment.json", type);
         this.assetService = assetService;
     }
+
+    /**
+     * Crea el servicio con repositorio inyectado (útil para pruebas).
+     *
+     * @param repo repositorio JSON de inversiones
+     * @param assetService servicio de activos usado para resolver precios y tipos
+     */
     public InvestmentService(JsonRepository<Investment> repo, AssetService assetService) {
         this.repo = repo;
         this.assetService = assetService;
@@ -125,7 +138,7 @@ public class InvestmentService {
      * Calcula la inversión inicial (desembolso en la compra): precio de compra por unidad multiplicado
      * por la cantidad adquirida.
      *
-     * @param purchasePrice precio unitario en la compra
+     * @param assetPrice precio unitario en la compra
      * @param amount cantidad de unidades
      * @return capital invertido inicialmente
      */
